@@ -9,6 +9,8 @@ const secretKey = 'my-secret-key';
 
 const app = express()
 
+const PORT = process.env.PORT || 3000;
+
 // setting up a storage and instance of multer
 
 app.use(express.json())
@@ -146,6 +148,6 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../../build', 'index.html'));
 })
 
-app.listen(3000, () => {
-    console.log('Server is up on port 3000')
+app.listen(PORT, () => {
+    console.log('Server is up on port ' + PORT)
 })

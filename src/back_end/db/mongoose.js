@@ -1,3 +1,3 @@
 const mongoose = require('mongoose')
 
-mongoose.connect('mongodb://127.0.0.1:27017/meteo_app')
+mongoose.connect('mongodb+srv://bazgipet:12111998Team7@iotcluster.wxshxtt.mongodb.net/?retryWrites=true&w=majority')
