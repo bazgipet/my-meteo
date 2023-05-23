@@ -4,6 +4,7 @@ const path = require('path')
 const jwt = require('jsonwebtoken')
 const User = require('./models/user')
 const Meteostation = require('./models/meteostation')
+const Notification = require('./models/notification')
 
 const secretKey = 'my-secret-key';
 
@@ -62,6 +63,22 @@ app.post('/api/register-meteo', async (req, res) => {
         await new_meteo.save();
 
         res.json({ msg: "Meteostation succesfully created." });
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+})
+
+app.post('/api/register-notification', async (req, res) => {
+    try {
+        const { name, date_from, date_to, temperature_below, temperature_above } = req.body;
+
+        
+        const new_notification = new Notification({ name, date_from, date_to, temperature_below, temperature_above });
+
+        // Save the user to the database
+        await new_notification.save();
+
+        res.json({ msg: "Notification succesfully created." });
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
@@ -128,6 +145,8 @@ app.get('/api/decode-token', (req, res) => {
 
     res.send(decoded)
 })
+
+
 
 // Define a route for generating a JWT
 app.get('/api/generate-token', (req, res) => {

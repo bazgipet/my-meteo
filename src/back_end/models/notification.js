@@ -27,6 +27,6 @@ const notificationSchema = new mongoose.Schema({
     timestamps: true
 })
 
-const Meteostation = mongoose.model('Meteostation', meteostationSchema)
+const Notification = mongoose.model('Notification', notificationSchema)
 
-module.exports = Meteostation
+module.exports = Notification
