@@ -28,3 +28,17 @@
     padding: 0 1rem;
     text-decoration: none;
 }
+
+ul.navbar_grid button {
+    color: bisque;
+    display: inline-block;
+    text-decoration: none;
+    transition-duration: .5s;
+    background: inherit;
+    border: none;
+    font: unset;
+}
+
+ul.navbar_grid button:hover{
+    cursor: pointer;
+}

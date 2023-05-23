@@ -9,6 +9,9 @@ function RouteProvider({ Component, Protected}) {
     // user is not authenticated, redirect to login page
     return <Navigate to="/" />;
   }
+  if (!isAuthenticated && Protected){
+    return <Navigate to="/" />;
+  }
 
   // user is authenticated, render the route element
   return (

@@ -1,8 +1,8 @@
 import { useState, useContext } from "react";
 import React from "react";
 import './css/SignUp.css'
-import Navbar from './Navbar'
-import Footer from './Footer'
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 import AuthContext from "./utils/AuthContext";
 
 function SignUp() {

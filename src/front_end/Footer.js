@@ -24,7 +24,7 @@ function Footer () {
                     </a>
                 </li>
             </ol>
-            <p className='author_paragraph'>Designed by Petr Bazgier, 2023</p>
+            <p className='author_paragraph'>Designed by TEAM 7, 2023</p>
         </footer>
     )
 }

@@ -4,6 +4,9 @@ import WeatherGraph from './WeatherGraph'
 import './css/SearchBar.css'
 import './css/WeatherTab.css';
 import './css/Main.css'
+import Navbar from "./Navbar";
+import NavbarProtected from './NavbarProtected';
+import Footer from "./Footer";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCloudShowersHeavy, faPlus, faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons'
 import AuthContext from "./utils/AuthContext";
@@ -13,7 +16,7 @@ function Main() {
     const [name, setName] = useState('')
     const [locality, setLocality] = useState('')
 
-    const { createMeteo } = useContext(AuthContext);
+    const { createMeteo, isAuthenticated } = useContext(AuthContext);
 
     function openCreateModal() {
         if (!isOpen) {
@@ -29,6 +32,7 @@ function Main() {
 
     return (
         <>
+        {isAuthenticated ? <NavbarProtected /> : <Navbar />}
         <aside>
             <section className='new_meteo_form'  style={modalStyles}>
                 <FontAwesomeIcon icon={faXmark} onClick={openCreateModal}/>
@@ -64,6 +68,7 @@ function Main() {
                 </article>
             </section>
             <WeatherGraph />
+            <Footer />
         </>
     )
 }

@@ -6,8 +6,6 @@ const AuthProvider = ({ children }) => {
   console.log('AuthProvider is called')
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
-    // Read the authentication token from localStorage and set the initial
-    // value of isAuthenticated accordingly
     const token = localStorage.getItem('token');
     return !!token; // Return true if the token exists, false otherwise
   });

@@ -1,8 +1,8 @@
 import React from "react";
 import { useState, useContext } from "react";
 import './css/LogIn.css'
-import Navbar from './Navbar'
-import Footer from './Footer'
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 import AuthContext from "./utils/AuthContext";
 
 

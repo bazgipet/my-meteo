@@ -13,39 +13,36 @@ import Notification from './front_end/Notification';
 import AuthProvider from "./front_end/utils/AuthProvider";
 import reportWebVitals from './reportWebVitals';
 import './front_end/css/FormPage.css'
+import Footer from './front_end/Footer';
+import RouteProvider from './front_end/utils/RouteProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
-  <AuthProvider>
-    <Routes>
-      <Route path="/">
-        <Route index element={
-        <section>
-          <Navbar />
-          <Main />
-        </section>
-      } />
-        <Route path="login" element={
-        <section>
-          <Navbar />
-          <LogIn />
-        </section>
-      } />
-      <Route path="notification" element={
-        <section>
-          <Navbar />
-          <Notification />
-        </section>
-      } />
-        <Route path="signup" element={
-        <section>
-          <Navbar />
-          <SignUp />
-        </section>
-      } />
-      </Route>
-    </Routes>
+    <AuthProvider>
+      <Routes>
+        <Route path="/">
+          <Route index element={
+            <section>
+              <Main />
+            </section>
+          } />
+
+          <Route path="login" element={
+            <RouteProvider Component={LogIn} Protected={false} />
+          } />
+
+          <Route path="signup" element={
+            <RouteProvider Component={SignUp} Protected={false} />
+          } />
+
+          <Route path="notification" element={
+            <RouteProvider Component={Notification} Protected={true} />
+          } />
+
+
+        </Route>
+      </Routes>
     </AuthProvider>
   </BrowserRouter>
 );

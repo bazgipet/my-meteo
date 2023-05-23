@@ -1,9 +1,9 @@
 import React from "react";
 import { useState, useContext } from "react";
 import './css/Notification.css'
-import Navbar from './Navbar'
-import Footer from './Footer'
 import AuthContext from "./utils/AuthContext";
+import NavbarProtected from "./NavbarProtected";
+import Footer from "./Footer";
 
 function Notification() {
     const [name, setName] = useState('');
@@ -22,6 +22,7 @@ function Notification() {
 
     return (
         <section>
+            <NavbarProtected />
             <section className="mynotification_section">
                 <article className="create_notification_form">
                     <h2>New Notification</h2>
@@ -37,8 +38,8 @@ function Notification() {
                     <input type="number" onChange={(e) => setTemp_above(e.target.value)} />
                     <button onClick={handleCreateNotification}>Create</button>
                 </article>
-                <Footer />
             </section>
+            <Footer />
         </section>
     )
 }
