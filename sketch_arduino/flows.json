@@ -1,0 +1,179 @@
+[
+    {
+        "id": "ad0bf55d3af25117",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "e8b9a29155c87c22",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "3afe1d87137ef7fd",
+        "type": "serial-port",
+        "serialport": "COM3",
+        "serialbaud": "9600",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": "",
+        "responsetimeout": "10000"
+    },
+    {
+        "id": "5214310cdcfc66a7",
+        "type": "mongodb",
+        "hostname": "127.0.0.1",
+        "topology": "direct",
+        "port": "27017",
+        "db": "Ardu",
+        "name": ""
+    },
+    {
+        "id": "d16ecddfe02dbac5",
+        "type": "serial request",
+        "z": "ad0bf55d3af25117",
+        "name": "",
+        "serial": "3afe1d87137ef7fd",
+        "x": 250,
+        "y": 220,
+        "wires": [
+            [
+                "8358cc59f54d0c65",
+                "1f6aaca02376b8c7"
+            ]
+        ]
+    },
+    {
+        "id": "8358cc59f54d0c65",
+        "type": "debug",
+        "z": "ad0bf55d3af25117",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 490,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "61e7a0c47b1e1461",
+        "type": "mongodb out",
+        "z": "ad0bf55d3af25117",
+        "mongodb": "5214310cdcfc66a7",
+        "name": "",
+        "collection": "Teploty",
+        "payonly": true,
+        "upsert": false,
+        "multi": false,
+        "operation": "store",
+        "x": 750,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "1f6aaca02376b8c7",
+        "type": "function",
+        "z": "ad0bf55d3af25117",
+        "name": "function 1",
+        "func": "const data = msg.payload.split(\",\");\nmsg.payload = {\n    temp: data[1],\n    hum: data[0]\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 300,
+        "wires": [
+            [
+                "61e7a0c47b1e1461"
+            ]
+        ]
+    },
+    {
+        "id": "36af41b70a0f9d61",
+        "type": "inject",
+        "z": "e8b9a29155c87c22",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "300",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "5",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 230,
+        "y": 200,
+        "wires": [
+            [
+                "9a51a271d5fefe28"
+            ]
+        ]
+    },
+    {
+        "id": "9a51a271d5fefe28",
+        "type": "mongodb in",
+        "z": "e8b9a29155c87c22",
+        "mongodb": "5214310cdcfc66a7",
+        "name": "",
+        "collection": "Teploty",
+        "operation": "find",
+        "x": 510,
+        "y": 200,
+        "wires": [
+            [
+                "da40802cc59463ba"
+            ]
+        ]
+    },
+    {
+        "id": "da40802cc59463ba",
+        "type": "http request",
+        "z": "e8b9a29155c87c22",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "body",
+        "url": "http://127.0.0.1:3000/api/data",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 850,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    }
+]
